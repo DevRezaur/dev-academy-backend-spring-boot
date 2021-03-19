@@ -14,7 +14,6 @@ import com.devrezaur.main.model.JwtResponse;
 import com.devrezaur.main.model.User;
 import com.devrezaur.main.util.JwtUtil;
 
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -30,7 +29,7 @@ public class AuthController {
 		try {
 			auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		} catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username or password", e);
+			throw new Exception("Incorrect username: " +user.getEmail()+ " or password: " +user.getPassword(), e);
 		}
 		final String jwt = jwtUtil.generateToken(auth);
 
