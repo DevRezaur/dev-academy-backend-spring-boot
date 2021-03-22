@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.devrezaur.main.model.AppUser;
 import com.devrezaur.main.model.JwtResponse;
 import com.devrezaur.main.model.User;
 import com.devrezaur.main.service.UserService;
@@ -27,15 +28,15 @@ public class AuthController {
 	private UserService userService;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> register(@RequestBody User user) {
-		User savedUser = userService.findUserByEmail(user.getEmail());
+	public ResponseEntity<?> register(@RequestBody AppUser appUser) {
+		User user = userService.findUserByEmail(appUser.getEmail());
 		
-		if(savedUser != null)
+		if(user != null)
 			return ResponseEntity.badRequest().body("User already exists !");
 		
-		savedUser = userService.saveUser(user);
+		appUser = userService.saveUser(appUser);
 		
-		return ResponseEntity.ok().body(savedUser);	
+		return ResponseEntity.ok().body(appUser);	
 	}
 
 	@PostMapping("/authenticate")
