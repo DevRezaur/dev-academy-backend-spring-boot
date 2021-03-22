@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.devrezaur.main.model.JwtResponse;
 import com.devrezaur.main.model.User;
+import com.devrezaur.main.service.UserService;
 import com.devrezaur.main.util.JwtUtil;
 
 @RestController
@@ -22,15 +23,31 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 	@Autowired
 	private JwtUtil jwtUtil;
+	@Autowired
+	private UserService userService;
+
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@RequestBody User user) {
+		User savedUser = userService.findUserByEmail(user.getEmail());
+		
+		if(savedUser != null)
+			return ResponseEntity.badRequest().body("User already exists !");
+		
+		savedUser = userService.saveUser(user);
+		
+		return ResponseEntity.ok().body(savedUser);	
+	}
 
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody User user) throws Exception {
 		Authentication auth = null;
+		
 		try {
 			auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		} catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username: " +user.getEmail()+ " or password: " +user.getPassword(), e);
+			return ResponseEntity.badRequest().body("Incorrect credentials !");
 		}
+		
 		final String jwt = jwtUtil.generateToken(auth);
 
 		return ResponseEntity.ok(new JwtResponse(jwt));
