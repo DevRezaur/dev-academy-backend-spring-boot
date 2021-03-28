@@ -1,7 +1,6 @@
 package com.devrezaur.main.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.devrezaur.main.model.AppUser;
 import com.devrezaur.main.model.JwtResponse;
 import com.devrezaur.main.model.User;
 import com.devrezaur.main.service.UserService;
@@ -30,15 +28,15 @@ public class AuthController {
 	private UserService userService;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> register(@RequestBody AppUser appUser) {
-		User user = userService.findUserByEmail(appUser.getEmail());
+	public ResponseEntity<?> register(@RequestBody User user) {
+		User regUser = userService.findUserByEmail(user.getEmail());
 		
-		if(user != null)
+		if(regUser != null)
 			return ResponseEntity.badRequest().body("User already exists !");
 		
-		appUser = userService.saveUser(appUser);
+		regUser = userService.saveUser(user);
 		
-		return ResponseEntity.ok().body(appUser);	
+		return ResponseEntity.ok().body(regUser);
 	}
 
 	@PostMapping("/authenticate")
@@ -64,12 +62,10 @@ public class AuthController {
 		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
 			token = authorizationHeader.substring(7);
 		
-		User user = new User();
-		
 		try {
 			if (jwtUtil.validateToken(token)) {
 				String username = jwtUtil.extractUsername(token);
-				user = userService.findUserByEmail(username);
+				User user = userService.findUserByEmail(username);
 				
 				return ResponseEntity.ok(user);
 			}

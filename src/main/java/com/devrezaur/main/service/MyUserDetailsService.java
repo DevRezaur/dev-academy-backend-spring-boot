@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.devrezaur.main.model.Role;
 import com.devrezaur.main.model.User;
 
-
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 

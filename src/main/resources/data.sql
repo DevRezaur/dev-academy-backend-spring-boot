@@ -1,7 +1,7 @@
-INSERT INTO users
+INSERT INTO users (user_id, email, password)
 VALUES('101', 'rezaur@gmail.com', 'iamadmin');
 
-INSERT INTO users
+INSERT INTO users (user_id, email, password)
 VALUES('102', 'sanzida@gmail.com', 'iamuser');
 
 INSERT INTO roles
