@@ -62,7 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(
 					"/css/**", 
 					"/image/**", 
-					"/auth/**",  
+					"/auth/**",
+					"/general/**",
 					"/h2-console/**").permitAll()
 			.antMatchers("/user/dashboard").hasAuthority("USER")
 			.antMatchers("/admin/dashboard").hasAuthority("ADMIN")
