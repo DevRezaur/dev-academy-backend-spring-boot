@@ -1,5 +1,7 @@
 package com.devrezaur.main.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -52,6 +54,30 @@ public class AuthController {
 		final String jwt = jwtUtil.generateToken(auth);
 
 		return ResponseEntity.ok(new JwtResponse(jwt));
+	}
+	
+	@PostMapping("/userinfo")
+	public ResponseEntity<?> getUserInfo(HttpServletRequest request) {
+		String authorizationHeader = request.getHeader("Authorization");
+		String token = "";
+		
+		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
+			token = authorizationHeader.substring(7);
+		
+		User user = new User();
+		
+		try {
+			if (jwtUtil.validateToken(token)) {
+				String username = jwtUtil.extractUsername(token);
+				user = userService.findUserByEmail(username);
+				
+				return ResponseEntity.ok(user);
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid JWT");
+		}
+		
+		return ResponseEntity.badRequest().body("Incorrect credentials !");
 	}
 
 }
