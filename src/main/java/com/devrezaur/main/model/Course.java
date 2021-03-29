@@ -27,16 +27,20 @@ public class Course {
 	@Column(name = "img_url")
 	private String imageUrl;
 
+	@Column(name = "status")
+	private String status;
+
 	public Course() {
 		super();
 	}
 
-	public Course(int id, String title, String desc, String imageUrl) {
+	public Course(int id, String title, String desc, String imageUrl, String status) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
 		this.imageUrl = imageUrl;
+		this.status = status;
 	}
 
 	public int getId() {
@@ -69,6 +73,14 @@ public class Course {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
