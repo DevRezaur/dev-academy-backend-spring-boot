@@ -1,6 +1,7 @@
 package com.devrezaur.main.service;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.devrezaur.main.model.Course;
@@ -22,6 +23,10 @@ public class CourseService {
 	
 	public List<Course> getAllCourses() {
 		return courseRepo.findAll();
+	}
+	
+	public Optional<Course> getCourse(int courseId) {
+		return courseRepo.findById(courseId);
 	}
 	
 	public Post createPost(Post post) {

@@ -20,8 +20,7 @@ INSERT INTO courses (course_id, title, desc, img_url, status)
 VALUES(
 	'10001',
 	'Java Spring & Spring Boot',
-	'Spring Framework is the most demanded Java enterprise framework. 
-     Learn Spring Framework 5.0 with Spring Boot 2.0 now.',
+	'Spring Framework is the most demanded Java enterprise framework. Learn Spring Framework 5.0 with Spring Boot 2.0 now.',
      'spring.jpg',
      'running'
 );
@@ -30,8 +29,7 @@ INSERT INTO courses (course_id, title, desc, img_url, status)
 VALUES(
 	'10002',
 	'Python with Django',
-	'Python is the number one programming language worldwide. 
-     From general programming to machine learning, anything you can do with Python.',
+	'Python is the number one programming language worldwide. From general programming to machine learning, anything you can do with Python.',
      'python.png',
      'running'
 );
@@ -40,8 +38,7 @@ INSERT INTO courses (course_id, title, desc, img_url, status)
 VALUES(
 	'10003',
 	'React Js & Styled Components',
-	'React JS is the most loved JavaScript library around the world. It is popular
-	 because of its easy learning curve and scalability.',
+	'React JS is the most loved JavaScript library around the world. It is popular because of its easy learning curve and scalability.',
      'react.jpg',
      'running'
 );
