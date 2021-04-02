@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.devrezaur.main.model.Course;
+import com.devrezaur.main.model.Post;
 import com.devrezaur.main.service.CourseService;
 
 @RestController
@@ -27,6 +28,13 @@ public class AdminController {
 		course = courseService.addCourse(course);
 		
 		return ResponseEntity.ok().body(course);
+	}
+	
+	@PostMapping("/createPost")
+	public ResponseEntity<?> createPost(@RequestBody Post post) {
+		post = courseService.createPost(post);
+		
+		return ResponseEntity.ok().body(post);
 	}
 
 }
