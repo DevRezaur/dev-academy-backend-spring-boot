@@ -30,8 +30,8 @@ public class Payment {
 	@Column(name = "amount")
 	private Double amount;
 
-	@Column(name = "status", columnDefinition = "varchar(15) default 'Pending'")
-	private String status;
+	@Column(name = "status")
+	private String status = "Pending";
 
 	public Payment() {
 		super();

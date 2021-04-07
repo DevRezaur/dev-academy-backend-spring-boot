@@ -39,7 +39,7 @@ VALUES(
 INSERT INTO courses (course_id, title, desc, image, img_url, status)
 VALUES(
 	'10003',
-	'React Js & Styled Components',
+	'React JS & Styled Components',
 	'React JS is the most loved JavaScript library around the world. It is popular because of its easy learning curve and scalability.',
     'react.jpg',
     'https://devrezaur.com/File-Bucket/image/react.jpg',
