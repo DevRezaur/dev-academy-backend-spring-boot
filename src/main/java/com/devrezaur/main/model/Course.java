@@ -24,6 +24,9 @@ public class Course {
 	@Column(name = "desc")
 	private String desc;
 
+	@Column(name = "image")
+	private String image;
+
 	@Column(name = "img_url")
 	private String imageUrl;
 
@@ -34,11 +37,12 @@ public class Course {
 		super();
 	}
 
-	public Course(int id, String title, String desc, String imageUrl, String status) {
+	public Course(int id, String title, String desc, String image, String imageUrl, String status) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
+		this.image = image;
 		this.imageUrl = imageUrl;
 		this.status = status;
 	}
@@ -65,6 +69,14 @@ public class Course {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getImageUrl() {

@@ -65,8 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/auth/**",
 					"/general/**",
 					"/h2-console/**").permitAll()
-			.antMatchers("/user/dashboard").hasAuthority("USER")
-			.antMatchers("/admin/dashboard").hasAuthority("ADMIN")
+			.antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+			.antMatchers("/admin/**").hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

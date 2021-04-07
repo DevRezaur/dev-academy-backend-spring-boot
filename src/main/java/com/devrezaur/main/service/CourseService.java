@@ -1,13 +1,14 @@
 package com.devrezaur.main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.devrezaur.main.model.Course;
-import com.devrezaur.main.model.Post;
+import com.devrezaur.main.model.CourseEnrolled;
+import com.devrezaur.main.repository.CourseEnrolledRepository;
 import com.devrezaur.main.repository.CourseRepository;
-import com.devrezaur.main.repository.PostRepository;
 
 @Service
 public class CourseService {
@@ -15,7 +16,7 @@ public class CourseService {
 	@Autowired
 	private CourseRepository courseRepo;
 	@Autowired
-	private PostRepository postRepo;
+	private CourseEnrolledRepository courseEnrolledRepo;
 	
 	public Course addCourse(Course course) {
 		return courseRepo.save(course);
@@ -29,8 +30,16 @@ public class CourseService {
 		return courseRepo.findById(courseId);
 	}
 	
-	public Post createPost(Post post) {
-		return postRepo.save(post);
+	public List<Course> getEnrolledCourse(int userId) {
+		List<CourseEnrolled> enrolledCourses = courseEnrolledRepo.getEnrolledCourses(userId);
+		List<Course> courses = new ArrayList<Course>();
+		
+		for(CourseEnrolled ce : enrolledCourses) {
+			Optional<Course> course = courseRepo.findById(ce.getCourseId());
+			course.ifPresent(courses::add);
+		}
+		
+		return courses;
 	}
 	
 }

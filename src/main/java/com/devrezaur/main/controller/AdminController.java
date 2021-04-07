@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devrezaur.main.model.Course;
 import com.devrezaur.main.model.Post;
 import com.devrezaur.main.service.CourseService;
+import com.devrezaur.main.service.PostService;
 
 @RestController
 @RequestMapping("/admin")
@@ -17,6 +18,8 @@ public class AdminController {
 
 	@Autowired
 	private CourseService courseService;
+	@Autowired
+	private PostService postService;
 
 	@GetMapping("/dashboard")
 	public ResponseEntity<?> dashboard() {
@@ -32,7 +35,7 @@ public class AdminController {
 	
 	@PostMapping("/createPost")
 	public ResponseEntity<?> createPost(@RequestBody Post post) {
-		post = courseService.createPost(post);
+		post = postService.createPost(post);
 		
 		return ResponseEntity.ok().body(post);
 	}

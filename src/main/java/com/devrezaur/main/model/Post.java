@@ -27,6 +27,9 @@ public class Post {
 	@Column(name = "desc")
 	private String desc;
 
+	@Column(name = "resource")
+	private String resource;
+
 	@Column(name = "resources_link")
 	private String resourcesLink;
 
@@ -37,12 +40,13 @@ public class Post {
 		super();
 	}
 
-	public Post(int id, int courseId, String title, String desc, String resourcesLink, String classLink) {
+	public Post(int id, int courseId, String title, String desc, String resourcesLink, String resource, String classLink) {
 		super();
 		this.id = id;
 		this.courseId = courseId;
 		this.title = title;
 		this.desc = desc;
+		this.resource = resource;
 		this.resourcesLink = resourcesLink;
 		this.classLink = classLink;
 	}
@@ -77,6 +81,14 @@ public class Post {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
 	}
 
 	public String getResourcesLink() {

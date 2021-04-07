@@ -6,5 +6,5 @@ import com.devrezaur.main.model.Course;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
-
+	
 }
