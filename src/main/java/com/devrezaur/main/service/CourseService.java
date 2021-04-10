@@ -42,4 +42,15 @@ public class CourseService {
 		return courses;
 	}
 	
+	public void updateEnrollStatus(int userId, int courseId, String status) {
+		if(status.equals("Clear")) {
+			CourseEnrolled enrolledCourse = new CourseEnrolled();
+			enrolledCourse.setUserId(userId);
+			enrolledCourse.setCourseId(courseId);
+			courseEnrolledRepo.save(enrolledCourse);
+		} else {
+			courseEnrolledRepo.unenroll(userId, courseId);
+		}
+	}
+	
 }

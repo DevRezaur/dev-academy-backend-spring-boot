@@ -52,6 +52,7 @@ public class AdminController {
 	
 	@PostMapping("/update/payment")
 	public Payment updatePayment(@RequestBody Payment payment) {
+		courseService.updateEnrollStatus(payment.getUserId(), payment.getCourseId(), payment.getStatus());
 		return paymentService.pay(payment);
 	}
 
