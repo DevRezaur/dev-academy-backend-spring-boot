@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devrezaur.main.model.Course;
 import com.devrezaur.main.model.Payment;
 import com.devrezaur.main.model.Post;
+import com.devrezaur.main.model.User;
+import com.devrezaur.main.repository.UserRepository;
 import com.devrezaur.main.service.CourseService;
 import com.devrezaur.main.service.PaymentService;
 import com.devrezaur.main.service.PostService;
@@ -25,6 +27,8 @@ public class AdminController {
 	private PostService postService;
 	@Autowired
 	private PaymentService paymentService;
+	@Autowired
+	private UserRepository userRepo;
 
 	@GetMapping("/dashboard")
 	public ResponseEntity<?> dashboard() {
@@ -54,6 +58,11 @@ public class AdminController {
 	public Payment updatePayment(@RequestBody Payment payment) {
 		courseService.updateEnrollStatus(payment.getUserId(), payment.getCourseId(), payment.getStatus());
 		return paymentService.pay(payment);
+	}
+	
+	@GetMapping("/allUsers")
+	public List<User> getAllUser() {
+		return userRepo.getAllUser();
 	}
 
 }
