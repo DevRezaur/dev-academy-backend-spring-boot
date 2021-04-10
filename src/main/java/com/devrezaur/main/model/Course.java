@@ -33,11 +33,14 @@ public class Course {
 	@Column(name = "status")
 	private String status;
 
+	@Column(name = "price")
+	private Double price;
+
 	public Course() {
 		super();
 	}
 
-	public Course(int id, String title, String desc, String image, String imageUrl, String status) {
+	public Course(int id, String title, String desc, String image, String imageUrl, String status, Double price) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -45,6 +48,7 @@ public class Course {
 		this.image = image;
 		this.imageUrl = imageUrl;
 		this.status = status;
+		this.price = price;
 	}
 
 	public int getId() {
@@ -93,6 +97,14 @@ public class Course {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }

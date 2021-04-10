@@ -28,7 +28,7 @@ public class User {
 	private String fullname;
 
 	@Column(name = "img_url")
-	private String imageUrl;
+	private String imageUrl = "https://devrezaur.com/File-Bucket/image/default_user.png";
 
 	@Column(name = "email")
 	private String email;

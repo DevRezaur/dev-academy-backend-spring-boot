@@ -32,4 +32,15 @@ public class UserService {
         return user = userRepository.save(user);
 	}
 	
+	public User saveAdmin(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		Role userRole = roleRepository.findByRole("ADMIN");
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		
+        return user = userRepository.save(user);
+	}
+	
+	public void updateImage(int id, String imageUrl) {
+		userRepository.updateImage(id, imageUrl);
+	}
 }
