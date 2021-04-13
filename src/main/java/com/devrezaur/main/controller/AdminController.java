@@ -30,11 +30,6 @@ public class AdminController {
 	@Autowired
 	private UserRepository userRepo;
 
-	@GetMapping("/dashboard")
-	public ResponseEntity<?> dashboard() {
-		return ResponseEntity.ok().body("Hello... admin....Welcome to Dashboard");
-	}
-
 	@PostMapping("/addCourse")
 	public ResponseEntity<?> addCourse(@RequestBody Course course) {
 		course = courseService.addCourse(course);

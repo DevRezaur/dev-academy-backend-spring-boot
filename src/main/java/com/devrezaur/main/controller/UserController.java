@@ -26,11 +26,6 @@ public class UserController {
 	@Autowired
 	private PaymentService paymentService;
 	
-	@GetMapping("/dashboard")
-	public String dashboard() {
-		return "Hello... User...Welcome to Dashboard";
-	}
-	
 	@GetMapping("/{courseId}/getPost")
 	public List<Post> getPost(@PathVariable("courseId") int courseId) {
 		return postService.getPosts(courseId);
